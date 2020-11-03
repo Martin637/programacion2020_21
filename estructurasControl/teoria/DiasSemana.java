@@ -9,8 +9,8 @@
 public class DiasSemana {
 	
 	public static void main (String[] args) {
-		String sDiaInicial = "Sábado";
-		int nDias      = 77;
+		String sDiaInicial = "Martes";
+		int nDias      = 33;
 		int desplazamiento = nDias % 7;
 		int iDiaInicial = 0;  //¿Hace falta declararla?
 		switch ( sDiaInicial ) {
@@ -40,12 +40,44 @@ public class DiasSemana {
 				return;
 	
 		}
-		//System.out.println(iDiaInicial);
-		int iDiaFinal = iDiaInicial + desplazamiento;
-		System.out.println(iDiaFinal);
-		String sDiaFinal = "";
-		//switch que dado iDiaFinal (0-6), nos diga Lunes, Martes, Miércoles ....
+	//	System.out.println(iDiaInicial);
 		
+		int iDiaFinal = iDiaInicial + desplazamiento ;
+		if (iDiaFinal >= 7) {
+			iDiaFinal -= 7;
+		}
+	//	System.out.println(iDiaFinal);
+
+		//System.out.println(iDiaFinal);
+		String sDiaFinal = "";
+ 		//switch que dado iDiaFinal (0-6), nos diga Lunes, Martes, Miércoles ....
+		switch ( iDiaFinal ) {
+			case 0:
+				sDiaFinal = "Domingo";
+				break;
+			case 1:
+				sDiaFinal = "Lunes";
+				break;
+			case 2:
+				sDiaFinal = "Martes";
+				break;
+			case 3:
+				sDiaFinal = "Miércoles";
+				break;
+			case 4:
+				sDiaFinal = "Jueves";
+				break;
+			case 5:
+				sDiaFinal = "Viernes";
+				break;
+			case 6:
+				sDiaFinal = "Sábado";
+				break;
+			default:
+				System.out.println("Opción no contemplada");
+				return;
+		}
+		System.out.printf("Hoy es %s dentro de %d días es %s%n", sDiaInicial, nDias, sDiaFinal);
 
 		
 	}
