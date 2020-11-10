@@ -16,7 +16,14 @@ public class Ejercicio3_1 {
 			contador++;
 			suma += numero;
 		}
-		double media = suma / contador;
+		if (contador == 0) {
+			System.out.println("No hay valores");
+			return;
+		}
+	//	double media = 1.0 * suma / contador; válido
+		double media = (double) suma / contador; //válido
+	//  double media = suma / contador; NO válido porque es una división de enteros	
+
 		System.out.printf("Introducidos %d número y la media vale %.2f%n", 
 				contador, media);
 	}
