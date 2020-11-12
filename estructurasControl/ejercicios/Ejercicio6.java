@@ -13,6 +13,7 @@ public class Ejercicio6 {
 		int numeroColumnas = sc.nextInt();
 		System.out.println("Introduce un número inferior a 10.000");
 		int numero = sc.nextInt();
+                sc.close();
 		//int numeroColumnas = 7;
 		//int numero = 9_999;
 		if ( numero > 9_999) {

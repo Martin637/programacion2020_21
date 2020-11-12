@@ -22,6 +22,7 @@ public class Ejercicio4_1{
 			System.out.println("Introduce un número entre 1 a 9999");
 			numero = sc.nextInt();
 		} while ( numero < 1 || numero > 9_999 );
+                sc.close();
 		
 		//AVERIGUAMOS EL NÚMERO DE CIFRAS
 		int numeroCifras = 0;
@@ -53,6 +54,7 @@ public class Ejercicio4_1{
 		
 		//una cifra
 		//int cifra1 = (numero / 1) % 10
+		
 		int contador = 1;
 		for (int i = (int) Math.pow(10, numeroCifras - 1) ; i >= 1; i /= 10){
 			int cifra = (numero / i) % 10;

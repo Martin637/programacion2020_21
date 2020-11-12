@@ -22,6 +22,7 @@ public class Ejercicio3 {
 		System.out.printf("Boolean: %B%n", variableBoolean);
 		System.out.println("Introduce una cadena");
 		String cadena = in.next();
+                in.close();
 		System.out.printf("Cadena: %s%n", cadena);
 		
 

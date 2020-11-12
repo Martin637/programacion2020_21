@@ -16,6 +16,7 @@ public class Ejercicio3_1 {
 			contador++;
 			suma += numero;
 		}
+                sc.close();
 		if (contador == 0) {
 			System.out.println("No hay valores");
 			return;
