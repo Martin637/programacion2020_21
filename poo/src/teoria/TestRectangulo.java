@@ -1,10 +1,12 @@
+package teoria;
+
 import java.util.Scanner;
 
 public class TestRectangulo {
     public static void main(String[] args) {
-        //objeto Rectangulo con lado y alto por defecto
+        //objeto teoria.Rectangulo con lado y alto por defecto
         Rectangulo rectangulo1 = new Rectangulo();
-        System.out.printf("Rectangulo de alto %d, ancho %d y área %d%n",
+        System.out.printf("teoria.Rectangulo de alto %d, ancho %d y área %d%n",
                 rectangulo1.getAlto(), rectangulo1.getAncho(), rectangulo1.getArea());
 
         //para cambiar valores usamos los setter
@@ -18,7 +20,7 @@ public class TestRectangulo {
         Rectangulo rectangulo2 = new Rectangulo();
         rectangulo2.setAlto(alto);
         rectangulo2.setAncho(ancho);
-        System.out.printf("Rectangulo de alto %d, ancho %d y área %d%n",
+        System.out.printf("teoria.Rectangulo de alto %d, ancho %d y área %d%n",
                 rectangulo2.getAlto(), rectangulo2.getAncho(), rectangulo2.getArea());
     }
 }

@@ -1,3 +1,5 @@
+package teoria;
+
 public class Rectangulo {
 
     private int alto = 1;

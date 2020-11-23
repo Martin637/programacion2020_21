@@ -1,8 +1,10 @@
+package teoria;
+
 public class Circulo {
     //atributo
     private float radio;
     //constructor
-    public Circulo (float radio) {   //new Circulo(4.5)
+    public Circulo (float radio) {   //new teoria.Circulo(4.5)
         this.radio = radio;
     }
 
