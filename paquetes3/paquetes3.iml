@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/jarDirectorio/itextpdf-5.5.13.jar!/" />
+          <root url="jar://$MODULE_DIR$/../paquetes2/out/artifacts/dni/dni.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
