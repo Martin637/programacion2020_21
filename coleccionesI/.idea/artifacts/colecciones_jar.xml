@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="coleccionesI:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/coleccionesI_jar</output-path>
+  <artifact type="jar" name="colecciones:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/colecciones_jar</output-path>
     <root id="archive" name="coleccionesI.jar">
       <element id="module-output" name="coleccionesI" />
     </root>
