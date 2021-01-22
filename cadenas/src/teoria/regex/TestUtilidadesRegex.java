@@ -1,5 +1,6 @@
 package teoria.regex;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class TestUtilidadesRegex {
@@ -24,9 +25,27 @@ public class TestUtilidadesRegex {
                 sNumeroEntero, UtilidadesRegex.esNumeroEntero(sNumeroEntero));*/
         //Double.parseDouble("33.33"); Double.parseDouble("2,33") comprobación formato, correcto el primero
         //Double.parseDouble("-2e-12");
-        System.out.println("Introduce un número real ");
+        /*System.out.println("Introduce un número real sin notación científica ");
+        String sNumeroReal = sc.nextLine();
+        System.out.printf("%s ¿Es un nº real sin notación científica? %b%n",
+                sNumeroReal, UtilidadesRegex.esNumeroRealSinNotacionCientifica(sNumeroReal));*/
+        /*System.out.println("Introduce un número notación científica ");
+        String sNumero = sc.nextLine();
+        System.out.printf("%s ¿Es un nº en notación cientifica? %b%n",
+                sNumero, UtilidadesRegex.esNotacionCientifica(sNumero));*/
+        /*System.out.println("Introduce un número real ");
         String sNumeroReal = sc.nextLine();
         System.out.printf("%s ¿Es un nº real? %b%n",
-                sNumeroReal, UtilidadesRegex.esNumeroReal(sNumeroReal));
+                sNumeroReal, UtilidadesRegex.esNumeroReal(sNumeroReal));*/
+        /*System.out.println("Introduce un dni válido");
+        String dni = sc.nextLine();
+        System.out.printf("%s ¿Es un dni con formato válido? %b%n",
+                dni, UtilidadesRegex.validarFormatoDNI(dni));*/
+        System.out.println("Introduce una fecha válida");
+        String fecha = sc.nextLine();
+        System.out.printf("%s ¿Es una fecha válida? %B%n",
+                fecha, UtilidadesRegex.validarFormatoFecha3(fecha));
+      //  LocalDate.of(420, 2, 29);
+      //  LocalDate.parse("-0009-1-01");
     }
 }
