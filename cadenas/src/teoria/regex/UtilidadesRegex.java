@@ -1,5 +1,7 @@
 package teoria.regex;
 
+import java.time.LocalDate;
+
 public class UtilidadesRegex {
     //validar número naturales del 0 en adelante
     public static boolean esNumeroNatural(String sNumeroValidar) {
@@ -30,7 +32,7 @@ public class UtilidadesRegex {
     }
     //validar dni: 12345678letra 12345678-letra
 
-    public static boolean validarFormatoDNI (String dni) {
+    public static boolean validarFormatoDNI (String dni) { //12345678l 12345678-l
       //  return dni.matches("[0-9]{8}-?[a-zA-Z]");
         return dni.toLowerCase().matches("[0-9]{8}-?[a-z]");
     }
@@ -51,5 +53,38 @@ public class UtilidadesRegex {
     }
 
     //controlamos los meses con 30, 28 y 31
+    //31 día para enero (1), marzo(3), mayo(5), julio(7), agosto(8), octubre(10), diciembre(12)
+    //30 días abril(4), junio(6), septiembre(9), noviembre(11)
+    //29 días febrero(2)
+    public static boolean validarFormatoFecha4(String fecha) {
+        String meses31 = "([1-9]|[12][0-9]|3[01]|0[1-9])[/ -](0?[13578]|1[02])[/ -][0-9]{1,4}";
+        String meses30 = "([1-9]|[12][0-9]|30|0[1-9])[/ -](0?[469]|11)[/ -][0-9]{1,4}";
+        String febreroBisiesto = "([1-9]|[12][0-9]|0[1-9])[/ -](0?2)[/ -][0-9]{1,4}";
+        String febreroNoBisiesto = "([1-9]|1[0-9]|2[0-8]|0[1-9])[/ -](0?2)[/ -][0-9]{1,4}";
+        String febrero = esBisiesto(fecha) ? febreroBisiesto : febreroNoBisiesto;
+        String regex   = meses31 + "|" + meses30 + "|" + febrero;
+        return  fecha.matches(regex);
+    }
+    private static boolean esBisiesto(String fecha) {
+        ///AÑADIR LÓGICA PARA QUE NO SEAN BISIESTO 1900, 2100, 2200, 2300, 2500
+        ///
+       // boolean bisiesto = false;
+        //12-12-2000 12-12-200  Si puedo hacer 12 12 2000  12 12 200 ....
+        //12/12/2000 12-12-200  Si puedo hacer 12 12 2000  12 12 200 ....
+        String[] tokens = fecha.split("[/ -]");   //ejemplo 12-12-2000  ["12", "12", "2000"]
+        if (fecha.matches("[0-9]{1,2}[/ -][0-9]{1,2}[/ -][0-9]{1,4}") &&
+                tokens[1].matches("0?2")) {
+            /*int iAnno = Integer.parseInt(tokens[2]);
+            bisiesto = iAnno % 4 == 0;*/
+            return  Integer.parseInt(tokens[2]) % 4 == 0;
+        }
+        return false;
+    }
+
+    //MÉTODO PÚBLICO QUE NOS DEVUELVA UN LOCALDATE DADA LA FECHA PARSEADA
+    public static LocalDate crearFecha (String fecha) {  //devolver LocalDate.of(año, mes, día)  parámetros son int
+        return null;
+    }
+
 
 }
