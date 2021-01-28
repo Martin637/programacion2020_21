@@ -40,7 +40,7 @@ public class UtilidadesRegex {
     public static boolean validarFormatoFecha1(String fecha) {
         return fecha.matches("[0-9]{2}[/ -][0-9]{2}[/ -][0-9]{4}");
     }
-    //fechas: d/m/yyyy dd/m/yyyy d/mm/yyyy dd/mm/yyyy tb - y espacion en blanco y años desde 0 en adelante
+    //fechas: d/m/yyyy dd/m/yyyy d/mm/yyyy dd/mm/yyyy tb - y espacio en blanco y años desde 0 en adelante
     public static boolean validarFormatoFecha2(String fecha) {
         return fecha.matches("[0-9]{1,2}[/ -][0-9]{1,2}[/ -][0-9]{1,4}");
     }
@@ -51,11 +51,10 @@ public class UtilidadesRegex {
         String regexMeses = "([1-9]|1[0-2]|0[1-9])";
         return fecha.matches( regexDias + "[/ -]" + regexMeses + "[/ -][0-9]{1,4}");
     }
-
     //controlamos los meses con 30, 28 y 31
     //31 día para enero (1), marzo(3), mayo(5), julio(7), agosto(8), octubre(10), diciembre(12)
     //30 días abril(4), junio(6), septiembre(9), noviembre(11)
-    //29 días febrero(2)
+    //29 y 28 días febrero(2)
     public static boolean validarFormatoFecha4(String fecha) {
         String meses31 = "([1-9]|[12][0-9]|3[01]|0[1-9])[/ -](0?[13578]|1[02])[/ -][0-9]{1,4}";
         String meses30 = "([1-9]|[12][0-9]|30|0[1-9])[/ -](0?[469]|11)[/ -][0-9]{1,4}";
@@ -65,25 +64,52 @@ public class UtilidadesRegex {
         String regex   = meses31 + "|" + meses30 + "|" + febrero;
         return  fecha.matches(regex);
     }
+
     private static boolean esBisiesto(String fecha) {
-        ///AÑADIR LÓGICA PARA QUE NO SEAN BISIESTO 1900, 2100, 2200, 2300, 2500
-        ///
-       // boolean bisiesto = false;
-        //12-12-2000 12-12-200  Si puedo hacer 12 12 2000  12 12 200 ....
-        //12/12/2000 12-12-200  Si puedo hacer 12 12 2000  12 12 200 ....
         String[] tokens = fecha.split("[/ -]");   //ejemplo 12-12-2000  ["12", "12", "2000"]
         if (fecha.matches("[0-9]{1,2}[/ -][0-9]{1,2}[/ -][0-9]{1,4}") &&
                 tokens[1].matches("0?2")) {
-            /*int iAnno = Integer.parseInt(tokens[2]);
-            bisiesto = iAnno % 4 == 0;*/
-            return  Integer.parseInt(tokens[2]) % 4 == 0;
+            int iAnno = Integer.parseInt(tokens[2]);
+            if (iAnno < 1583) //cuando se aceptó el calendario Gregoriano, aparecen años bisiestos a partir de 1583
+                return false;
+            //averiguamos si es fin de siglo: 1600, 1700, ..., 2000, 2100, .....
+            if ( iAnno % 100 == 0 ) //fin de siglo
+                return iAnno / 100 % 4 == 0; //bisiesto si las dos primeras sean divisibles por 4: 2000, 2400
+            return  Integer.parseInt(tokens[2]) % 4 == 0;  //comprobación de resto de años
         }
         return false;
     }
 
     //MÉTODO PÚBLICO QUE NOS DEVUELVA UN LOCALDATE DADA LA FECHA PARSEADA
-    public static LocalDate crearFecha (String fecha) {  //devolver LocalDate.of(año, mes, día)  parámetros son int
-        return null;
+    //dia/mes/año dia-mes-año dia mes año
+    public static LocalDate crearFecha1 (String fecha) {  //devolver LocalDate.of(año, mes, día)  parámetros son int
+        if (!validarFormatoFecha4(fecha))
+            return null;
+        String[] tokens = fecha.split("[/ -]");  //ej dia/mes/año
+        int iDia  = Integer.parseInt(tokens[0]);
+        int iMes  = Integer.parseInt(tokens[1]);
+        int iAnno = Integer.parseInt(tokens[2]);
+        return LocalDate.of(iAnno, iMes, iDia);
+    }
+    public static LocalDate crearFecha2 (String fecha) {  //devolver LocalDate.of(año, mes, día)  parámetros son int
+        if (!validarFormatoFecha4(fecha))
+            return null;
+        String[] tokens = fecha.split("[/ -]");  //ej dia/mes/año
+        StringBuilder stringBuilder = new StringBuilder();
+        int digitosAnno = tokens[2].length();
+        for (int i = digitosAnno; i < 4; i++) {
+            stringBuilder.append('0');
+        }
+        stringBuilder.append(tokens[2]);  //año
+        stringBuilder.append('-');
+        if (tokens[1].length() == 1)
+            stringBuilder.append('0');
+        stringBuilder.append(tokens[1]); //mes
+        stringBuilder.append('-');
+        if (tokens[0].length() == 1)
+            stringBuilder.append('0');
+        stringBuilder.append(tokens[0]); //día
+        return LocalDate.parse(stringBuilder.toString());  //año-mes-día
     }
 
 

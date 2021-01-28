@@ -45,7 +45,11 @@ public class TestUtilidadesRegex {
         String fecha = sc.nextLine();
         System.out.printf("%s ¿Es una fecha válida? %B%n",
                 fecha, UtilidadesRegex.validarFormatoFecha4(fecha));
-        LocalDate.of(2100, 2, 29);
-      //  LocalDate.parse("2021-02-29");
+        if (UtilidadesRegex.validarFormatoFecha4(fecha)) {
+            LocalDate localDate = UtilidadesRegex.crearFecha2(fecha);
+            System.out.println(localDate);
+        } else {
+            System.out.printf("%s: fecha incorrecta%n", fecha);
+        }
     }
 }

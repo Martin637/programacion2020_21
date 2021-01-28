@@ -65,18 +65,27 @@ public class Persona { //POO
                 "DIRECCION: " + direccion;
     }*/
 
-    @Override
+   /* @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("NOMBRE");
+        stringBuilder.append("NOMBRE: ");
         stringBuilder.append(apellido1);
         stringBuilder.append(' ');
         stringBuilder.append(apellido2);
         stringBuilder.append(", ");
         stringBuilder.append(nombre);
         stringBuilder.append('\n');
-        stringBuilder.append("DNI");
-
+        stringBuilder.append("DNI: ");
+        stringBuilder.append(dni);
+        stringBuilder.append('\n');
+        stringBuilder.append("DIRECCIÓN: ");
+        stringBuilder.append(direccion);
         return stringBuilder.toString();
+    }*/
+
+    @Override
+    public String toString() {
+        return String.format( "NOMBRE: %s %s, %s%nDNI: %s%nDIRECCIÓN: %s",
+                apellido1, apellido2, nombre, dni, direccion  );
     }
 }
