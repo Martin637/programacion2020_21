@@ -13,6 +13,7 @@ public class TestClave {
             claveSegura.setClaveSegura(posibleClave);
             System.out.printf("Clave segura %s%n", claveSegura.getClaveSegura());
         }*/
+
         while (true) {
             String posibleClave = ClaveSegura.getPosibleClave();
             if (ClaveSegura.esClaveSegura(posibleClave)) {

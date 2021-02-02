@@ -19,7 +19,8 @@ public class ClaveSegura {
         boolean tieneAlmenosLetraMinuscula = claveATestear.matches(".*[a-zñáéíóúü]+.*"); //y}¡H6jaQ false
         boolean tieneAlmenosLetraMayuscula = claveATestear.matches(".*[A-ZÁÉÍÓÚÜÑ]+.*"); //y}¡H6jaQ false
         boolean tieneAlmenosNumero         = claveATestear.matches(".*[0-9]+.*"); //y}¡H6jaQ false
-        boolean tieneAlmenosNoAlfaNumerico = claveATestear.matches(".*[\\W_]+.*"); //y}¡H6jaQ false
+   //     boolean tieneAlmenosNoAlfaNumerico = claveATestear.matches(".*[\\W_]+.*"); //y}¡H6jaQ false
+        boolean tieneAlmenosNoAlfaNumerico = claveATestear.matches(".*[^a-zñáéíóúüA-ZÁÉÍÓÚÜÑ0-9]+.*"); //y}¡H6jaQ false
         return tieneAlmenos8Caracteres && tieneAlmenosLetraMayuscula && tieneAlmenosLetraMinuscula
                 && tieneAlmenosNoAlfaNumerico && tieneAlmenosNumero;
     }
@@ -44,5 +45,10 @@ public class ClaveSegura {
         String posibleClave = stringBuilder.toString();
         System.out.printf("Posible clave segura: %s%n", posibleClave );
         return posibleClave;
+    }
+
+    public static void main(String[] args) {
+        String claveSegura = "111591aÁ,";
+        System.out.println(esClaveSegura(claveSegura));
     }
 }
