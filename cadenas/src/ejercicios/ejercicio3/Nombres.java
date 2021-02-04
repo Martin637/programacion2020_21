@@ -18,16 +18,31 @@ public class Nombres {
             listaNombres.add(scanner.nextLine());
        // System.out.println(listaNombres);
         System.out.printf("Leídas %d cadenas%n", devolverNumeroDeCadenas(listaNombres));
-        char letra = 's';
+        scanner = new Scanner(System.in);
+        System.out.println("Introduce la letra a buscar");
+        char letra = scanner.nextLine().charAt(0);
         System.out.printf("Cadenas que empiezan por %c%n%s%n",
                 letra , devolverListaDeCadenasQueEmpiezanPorCaracter(letra, listaNombres));
-        System.out.printf("Cadenas que no acaaban en vocal %s%n",
+        System.out.printf("Cadenas que no acaban en vocal %s%n",
                 devolverListaNombresQueNoAcabanEnVocal(listaNombres));
+        System.out.printf("Tamaño de cadena mas chica %d, y tamaño de cadena mas grande %d%n",
+                devolverTamannoMaxMinCadenas(listaNombres)[0],
+                devolverTamannoMaxMinCadenas(listaNombres)[1]);
+        System.out.println("Introduce el nombre a buscar");
+        String cadena = scanner.nextLine();
+        System.out.printf("¿La lista contiene la cadena %s? %B%n",
+                cadena, contieneCadena(cadena, listaNombres));
+        System.out.println("Introduce secuencia a buscar");
+        String secuencia = scanner.nextLine();
+        scanner.close();
+        System.out.printf("Lista de cadenas que contiene la secuencia %s%n%s%n",
+                secuencia, devolverListaCadenasCharSequence(secuencia, listaNombres));
     }
 
     public static int devolverNumeroDeCadenas(List<String> listaCadenas){
         return listaCadenas.size();
     }
+
     public static List<String> devolverListaDeCadenasQueEmpiezanPorCaracter
             (char letra, List<String> listaCadenas) {
         List<String> listaLetra = new ArrayList<>();
@@ -44,5 +59,37 @@ public class Nombres {
                 listaNOAcabaVocal.add(cadena);
         }
         return listaNOAcabaVocal;
+    }
+    //nos devuelva un array con dos valores enteros max y min longitud de cadenas
+    public static int[] devolverTamannoMaxMinCadenas (List<String> listaCadenas) {
+       // int[] tamannos = new int[2];
+        int min = Integer.MAX_VALUE, max = 0;
+        for (String cadena: listaCadenas) {
+            if (cadena.length() < min)
+                min = cadena.length();
+            if (cadena.length() > max)
+                max = cadena.length();
+        }
+       // tamannos[0] = min;
+       // tamannos[1] = max;
+       // return tamannos;
+        return new int[] { max, min };
+    }
+    public static boolean contieneCadena (String cadenaABuscar, List<String> listaCadenas) {
+        //return listaCadenas.contains(cadenaABuscar);
+        for (String cadena : listaCadenas) {
+            if (cadena.equalsIgnoreCase(cadenaABuscar))
+                return true;
+        }
+        return false;
+    }
+
+    public static List<String> devolverListaCadenasCharSequence (String secuencia, List<String> listaCadenas) {
+       List<String> listaCoincidencias = new ArrayList<>();
+        for (String cadena: listaCadenas) {
+            if (cadena.toLowerCase().contains(secuencia.toLowerCase()))
+                listaCoincidencias.add(cadena);
+        }
+       return listaCoincidencias;
     }
 }
